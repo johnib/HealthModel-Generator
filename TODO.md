@@ -1,1 +1,0 @@
-- Write vlidations on input
