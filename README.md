@@ -4,7 +4,7 @@ Install
 ---
 1. Clone this repo
 2. `npm install`
-3. `npm app.js`
+3. `node app.js`
 
 TODO
 ---
