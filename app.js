@@ -1,9 +1,8 @@
 let fs = require('fs');
 let xmlGenerator = require('js2xmlparser');
-// let xmlParser = require('xml2js').parseString;
 let uuid = require('uuid/v4');
 
-const configFile = fs.readFileSync('./hm.config.json');
+const configFile = fs.readFileSync('./config.json');
 const config = JSON.parse(configFile.toString('utf8'));
 
 validateConfig(config);
