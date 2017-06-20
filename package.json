@@ -9,6 +9,7 @@
   "author": "jorub",
   "license": "ISC",
   "dependencies": {
+    "commander": "^2.9.0",
     "js2xmlparser": "^3.0.0",
     "uuid": "^3.1.0",
     "xmldom": "^0.1.27"
