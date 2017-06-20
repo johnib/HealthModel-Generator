@@ -2,7 +2,10 @@
   "name": "healthmodel-generator",
   "version": "1.0.0",
   "description": "A tool to generate HealthModel configuration",
-  "main": "app.js",
+  "preferGlobal": true,
+  "bin":{
+    "hmgen": "hmgen.js"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
