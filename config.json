@@ -1,0 +1,25 @@
+{
+  "applicationResourceId": "ResourceId",
+  "nodes": [
+    {
+      "name": "NODE_NAME",
+      "testNameSuffix": "_some_suffix"
+    },
+    {
+      "name": "NODE_NAME2",
+      "testNameSuffix": "_some_suffix2"
+    }
+  ],
+  "monitors": [
+    {
+      "name": "Role is Unavailable",
+      "testNamePrefix": "test",
+      "kbId": "95100"
+    },
+    {
+      "name": "Role is Lagging",
+      "testNamePrefix": "test2",
+      "kbId": "95101"
+    }
+  ]
+}
