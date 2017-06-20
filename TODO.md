@@ -1,0 +1,2 @@
+- Write vlidations on input
+- Support updating the `TestList.xml` file with the relevant GUIDs
