@@ -25,10 +25,12 @@ function generateHealthModel(config) {
 		.replace('<?xml version="1.0"?>', '<?xml version="1.0" encoding="utf-8"?>');
 
 	fs.writeFileSync(program.output, xml);
-	config.nodes.forEach(function (node) {
-		domparser.updateTestFile(node.monitorIds, node.testListPath);
-	});
 
+	if (program.updateTestXmls) {
+		config.nodes.forEach(function (node) {
+			domparser.updateTestFile(node.monitorIds, node.testListPath);
+		});
+	}
 }
 
 function createHealthModelTree(config) {
