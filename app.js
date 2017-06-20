@@ -1,10 +1,9 @@
 let fs = require('fs');
 let xmlGenerator = require('js2xmlparser');
 let uuid = require('uuid/v4');
+let domparser = require('./domparser');
 
-const configFile = fs.readFileSync('./hm.config.json');
-const config = JSON.parse(configFile.toString('utf8'));
-
+const config = JSON.parse(fs.readFileSync('./hm.config.json', 'utf8'));
 validateConfig(config);
 
 const hmTree = createHealthModelTree(config);
@@ -14,15 +13,30 @@ const xml = xmlGenerator.parse("HealthModelConfiguration", hmTree)
 
 console.log(xml);
 
+config.nodes.forEach(function (node) {
+	domparser.updateTestFile(node.monitorIds, node.testListPath);
+});
+
+process.exit(0);
+
 function createHealthModelTree(config) {
 	const nodes = config.nodes;
 	const monitors = config.monitors;
 
 	const nodesXml = nodes.map(node => {
+		node.monitorIds = []; // a map between test name to MonitorID
+
 		const monitorsXml = monitors.map(monitor => {
+			const monitorId = uuid().toUpperCase();
+
+			node.monitorIds.push({
+				TestName: `${monitor.testNamePrefix}${node.testNameSuffix}`,
+				MonitorId: monitorId
+			});
+
 			return {
 				"@": {
-					id: uuid().toUpperCase(),
+					id: monitorId,
 					name: monitor.name,
 					severity: monitor.severity || "2",
 					sourceType: "MetricTip",

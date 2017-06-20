@@ -9,4 +9,3 @@ Install
 TODO
 ---
 - Add input validations
-- Add `TestList.xml` auto-update feature
