@@ -2,7 +2,7 @@ let fs = require('fs');
 let xmlGenerator = require('js2xmlparser');
 let uuid = require('uuid/v4');
 
-const configFile = fs.readFileSync('./config.json');
+const configFile = fs.readFileSync('./hm.config.json');
 const config = JSON.parse(configFile.toString('utf8'));
 
 validateConfig(config);
@@ -15,17 +15,11 @@ const xml = xmlGenerator.parse("HealthModelConfiguration", hmTree)
 console.log(xml);
 
 function createHealthModelTree(config) {
-	let tree = {
-		"@": {
-			applicationResourceId: config.applicationResourceId
-		}
-	};
-
 	const nodes = config.nodes;
 	const monitors = config.monitors;
 
-	tree.Nodes = nodes.map(node => {
-		const monitorsConfig = monitors.map(monitor => {
+	const nodesXml = nodes.map(node => {
+		const monitorsXml = monitors.map(monitor => {
 			return {
 				"@": {
 					id: uuid().toUpperCase(),
@@ -44,10 +38,19 @@ function createHealthModelTree(config) {
 				name: node.name,
 			},
 			Monitors: {
-				Monitor: monitorsConfig
+				Monitor: monitorsXml
 			}
 		}
 	});
+
+	let tree = {
+		"@": {
+			applicationResourceId: config.applicationResourceId
+		},
+		Nodes: {
+			Node: nodesXml
+		}
+	};
 
 	return tree;
 }
