@@ -13,7 +13,14 @@ program
 	.option('-u, --update-test-xmls', 'update the test-list xml files with the new GUIDs')
 	.parse(process.argv);
 
-const config = JSON.parse(fs.readFileSync(program.config, 'utf8'));
+let config;
+try {
+	config = JSON.parse(fs.readFileSync(program.config, 'utf8'));
+} catch (e) {
+	console.error(`The provided configuration path does not exist, or readable, or not a valid JSON, provided path: ${program.config}`);
+	process.exit(-1);
+}
+
 generateHealthModel(config);
 
 console.log("Done");
