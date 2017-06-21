@@ -3,11 +3,13 @@
   "nodes": [
     {
       "name": "NODE_NAME",
-      "testNameSuffix": "_some_suffix"
+      "testNameSuffix": "_some_suffix",
+      "testListPath": "C:\\Users\\user\\file.xml"
     },
     {
       "name": "NODE_NAME2",
-      "testNameSuffix": "_some_suffix2"
+      "testNameSuffix": "_some_suffix2",
+      "testListPath": "C:\\Users\\user\\file2.xml"
     }
   ],
   "monitors": [
