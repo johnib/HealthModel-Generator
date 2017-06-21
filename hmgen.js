@@ -16,6 +16,7 @@ program
 const config = JSON.parse(fs.readFileSync(program.config, 'utf8'));
 generateHealthModel(config);
 
+console.log("Done");
 process.exit(0);
 
 // End of program here
